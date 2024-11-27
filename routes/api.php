@@ -34,11 +34,9 @@ Route::group(['middleware' => ['api', 'auth:api']], function () {
     Route::get('historial-transito/{id}', [HistorialTransitoController::class, 'show']);
     Route::put('historial-transito/{id}', [HistorialTransitoController::class, 'update']);
     Route::delete('historial-transito/{id}', [HistorialTransitoController::class, 'destroy']);
-
     // Rutas adicionales para ver registros eliminados y restaurarlos
     Route::get('historial-transito/trashed', [HistorialTransitoController::class, 'trashed']);
     Route::patch('historial-transito/{id}/restore', [HistorialTransitoController::class, 'restore']);
-
     // Ruta para procesar la importación
     Route::post('historial-transito/import', [HistorialTransitoController::class, 'import'])->name('import');
 });
