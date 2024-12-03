@@ -7,6 +7,7 @@ use App\Models\HistorialTransito;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
 use App\Imports\HistorialTransitoImport;
+use App\Exports\HistorialTransitoExport;
 use Yajra\DataTables\DataTables;
 
 
@@ -202,5 +203,13 @@ class HistorialTransitoController extends Controller
                 'details' => $e->getMessage()
             ], 500);
         }
+    }
+
+    public function export(){
+        $data = HistorialTransito::all();
+        if($data->isEmpty()){
+            return response()->json(['message' => 'No hay registros para exportar'], 200);
+        }
+        return Excel::download(new HistorialTransitoExport, 'HistorialTransito.xlsx');
     }
 }
