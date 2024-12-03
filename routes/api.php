@@ -39,4 +39,5 @@ Route::group(['middleware' => ['api', 'auth:api']], function () {
     Route::patch('historial-transito/{id}/restore', [HistorialTransitoController::class, 'restore']);
     // Ruta para procesar la importación
     Route::post('historial-transito/import', [HistorialTransitoController::class, 'import'])->name('import');
+    Route::post('historial-transito/export', [HistorialTransitoController::class, 'export'])->name('export');
 });
